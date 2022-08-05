@@ -1,0 +1,1434 @@
+#include<stdio.h>
+#include<string.h>
+char user[100],pass[100],username[100],passwor[100];
+char an[100],ap[100];
+
+////structure start
+struct details{
+    char name[100];
+    char num[100];
+    char address[100];
+    char username[100];
+    char password[100];
+    int age;
+    };
+
+struct payment{
+    char method[100],status[100];
+};
+
+struct food{
+    char name[100];
+    int id,price,stock;
+};
+struct fq{
+    int quantity;
+};
+
+struct details u1;
+struct food f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12;
+struct fq q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12;
+struct payment m1;
+
+////structure end
+
+
+////main function start
+void main()
+{
+    bk();
+}
+//main function end
+
+
+void bk()
+{
+    char yesno;
+    printf("Welcome to RI Food Corner Menu\n");
+    printf("Do You Have An Account\nIf You Have An Account Then Enter Y/y\n");
+    scanf("\n%c",&yesno);
+    if(yesno=='y' || yesno=='Y')
+    {
+        login();
+    }
+    else
+    {
+        signup();
+    }
+}
+
+////log in function start
+void login()
+{
+    char back;
+    printf("Please Enter Your Details to Continue\n");
+    printf("If you Clicked By Mistaken Then Please Enter Your b/B to Go Back\n");
+    scanf("\n%c",&back);
+    if(back=='b' || back=='B')
+    {
+        bk();
+    }
+    else{
+        usercheck();
+    }
+
+}
+
+void usercheck()
+{
+    struct details u1;
+    printf("Please Enter Your Username\n");
+    scanf("\n%s",username);
+    if(strcmp(username,user)==0 || strcmp(username,"admin")==0)
+    {
+
+        passcheck();
+    }
+    else
+    {
+        struct details u1;
+        printf("Please Check Username And Try Again\n");
+        login();
+    }
+}
+void passcheck()
+{
+    printf("Please Enter Your Password\n");
+    scanf("\n%s",passwor);
+    if(strcmp(passwor,pass)==0 || strcmp(passwor,"admin")==0)
+    {
+
+        printf("\nLog In Successfull");
+        printf("\nWelcome %s To RI Food Corner",u1.username);
+        aui();
+    }
+    else
+    {
+        struct details u1;
+        printf("Please Check Password And Try Again\n");
+        passcheck1();
+    }
+
+}
+void passcheck1()
+{
+    passcheck();
+}
+
+////log in function end
+
+
+
+////sign up function start
+void signup()
+{
+    printf("Please Enter Details To Sign Up\n");
+    printf("Please Enter Name\n");
+    scanf("\n%[^\n]",u1.name);
+    printf("Please Enter Username\n");
+    scanf("\n%s",u1.username);
+    strcpy(user,u1.username);
+    printf("Please Enter Password\n");
+    scanf("\n%s",u1.password);
+    strcpy(pass,u1.password);
+    printf("Please Enter Age\n");
+    scanf("\n%d",&u1.age);
+    numcheck();
+}
+void numcheck()
+{
+    int x;
+    char str1[100];
+    printf("Please Enter 11 Digit Phone Number\n");
+    scanf("%s",u1.num);
+    strcpy(str1,u1.num);
+    x=strlen(str1);
+    if(x==11)
+    {
+        printf("Please Enter Address\n");
+        scanf("\n%[^\n]",u1.address);
+        printf("Sign Up Successfull\nPlease Log In To Continue\n");
+        aui();
+    }
+    else{
+        numcheck1();
+    }
+}
+void numcheck1()
+{
+    numcheck();
+}
+
+////sign up function end
+
+
+////area selection start
+void aui()
+{
+    char areain[100];
+    printf("\nTo Continue Buying Food You Need To Pick Your Area");
+    printf("\nOur Services is Only Available In These Areas");
+    printf("\nArea1\nArea2\nArea3\nArea4\nArea5");
+    printf("\nPlease Enter Your Area\n");
+    scanf("\n%s",areain);
+    if(strcmpi(areain,"area1")==0 || strcmpi(areain,"area2")==0 || strcmpi(areain,"area3")==0 || strcmpi(areain,"area4")==0 || strcmpi(areain,"area5")==0)
+    {
+        printf("\nOur Available Foods Are\n");
+        foodmenu();
+
+    }
+    else
+    {
+        printf("\nOur Service Is Not Available In Your Area");
+        printf("\nWe Will Inform You When Our Service Will Be Available In Your Area");
+        printf("\nPlease Stay Tunned");
+    }
+}
+
+////area selection end
+
+
+
+////food menu start
+void foodmenu()
+{
+    struct food f1={"Mutton Biriyani",1,170,20};
+    struct food f2={"Chicken Biriyani",2,190,24};
+    struct food f3={"Rice 1 Plate",3,15,23};
+    struct food f5={"Chicken curry",5,70,18};
+    struct food f4={"Mutton curry",4,120,19};
+    struct food f6={"Fish curry",6,80,15};
+    struct food f7={"Hot Coffee",7,15,30};
+    struct food f8={"Hot Coffee",8,90,27};
+    struct food f9={"Tea",9,10,100};
+    struct food f10={"Chicken Burger",10,180,30};
+    struct food f11={"Chicken Cheese Burger",11,200,40};
+    struct food f12={"Beef Cheese Burger",12,200,47};
+    printf("\n                                                          -                                                         ");
+    printf("\n                                                         -  -                                                        ");
+    printf("\n                                                        -    -                                                       ");
+    printf("\n                                                       -      -                                                      ");
+    printf("\n                                                      -        -                                                     ");
+    printf("\n                                                     -          -                                                    ");
+    printf("\n-----------------------------------------------------            ----------------------------------------------------");
+    printf("\n----------------------------------------------------------------------------------------------------------------------");
+    printf("\n----------------------------------------------------------------------------------------------------------------------");
+    printf("\n|                                              RI Food Corner Menu                                                   |");
+    printf("\n|                                                                                                                    |");
+    printf("\n|                                                                                                                    |");
+    printf("\n|             Rice Items                             |                            Drinks Items                       |");
+    printf("\n| %d.%s----------------%d TK(Stock %d)  |     %d.%s--------------------- %d TK(Stock %d)         |",f1.id,f1.name,f1.price,f1.stock,f7.id,f7.name,f7.price,f7.stock);
+    printf("\n| %d.%s---------------%d TK(Stock %d)  |      %d.%s--------------------- %d TK(Stock %d)        |",f2.id,f2.name,f2.price,f2.stock,f8.id,f8.name,f8.price,f8.stock);
+    printf("\n| %d.%s------------------- %d TK(Stock %d)  |      %d.%s---------------------------- %d TK(Stock %d)       |",f3.id,f3.name,f3.price,f3.stock,f9.id,f9.name,f9.price,f9.stock);
+    printf("\n|             Curry Item                             |                           Burger Items                        |");
+    printf("\n| %d.%s------------------ %d TK(Stock %d)  |      %d.%s----------------%d TK(Stock %d)        |",f4.id,f4.name,f4.price,f4.stock,f10.id,f10.name,f10.price,f10.stock);
+    printf("\n| %d.%s------------------ %d TK(Stock %d)  |      %d.%s---------%d TK(Stock %d)        |",f5.id,f5.name,f5.price,f5.stock,f11.id,f11.name,f11.price,f11.stock);
+    printf("\n| %d.%s--------------------- %d TK(Stock %d)  |      %d.%s------------%d TK(Stock %d)        |",f6.id,f6.name,f6.price,f6.stock,f12.id,f12.name,f12.price,f12.stock);
+    printf("\n|                                                                                                                    |");
+    printf("\n----------------------------------------------------------------------------------------------------------------------");
+    order();
+}
+////food menu End
+
+
+////purchase item
+order()
+{
+    struct food f1={"Mutton Biriyani",1,170,20};
+    struct food f2={"Chicken Biriyani",2,190,24};
+    struct food f3={"Rice 1 Plate",3,15,23};
+    struct food f5={"Chicken curry",5,70,18};
+    struct food f4={"Mutton curry",4,120,19};
+    struct food f6={"Fish curry",6,80,15};
+    struct food f7={"Hot Coffee",7,15,30};
+    struct food f8={"Hot Coffee",8,90,27};
+    struct food f9={"Tea",9,10,100};
+    struct food f10={"Chicken Burger",10,180,30};
+    struct food f11={"Chicken Cheese Burger",11,200,40};
+    struct food f12={"Beef Cheese Burger",12,200,47};
+    int item,i,id,x,total=0;
+    printf("\nPlease Enter How Many Items You Want To Buy\n");
+    scanf("\n%d",&item);
+    x=item;
+    int arr[item];
+    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+    for(i=0;i<item;i++)
+    {
+        scanf("\n%d",&id);
+        if(id==1)
+        {
+            printf("\nPlease Enter Quantity of %s ",f1.name);
+            scanf("\n%d",&q1.quantity);
+            if((q1.quantity)<=(f1.stock))
+            {
+                arr[i]=id;
+                printf("\nPlease Enter The Number of Food You Want To Buy\n");
+            }
+            else{
+                printf("/nPlease Order Between 1-%d",f1.stock);
+                printf("\nPlease Enter Quantity of %s ",f1.name);
+                scanf("%d",&q1.quantity);
+            }
+        }
+        else if(id==2)
+            {
+                printf("\nPlease Enter Quantity of %s ",f2.name);
+                scanf("\n%d",&q2.quantity);
+                if((q2.quantity)<=(f2.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f2.stock);
+                    printf("\nPlease Enter Quantity of %s ",f2.name);
+                    scanf("%d",&q2.quantity);
+                }
+            }
+        else if(id==3)
+            {
+                printf("\nPlease Enter Quantity of %s ",f3.name);
+                scanf("\n%d",&q3.quantity);
+                if((q2.quantity)<=(f3.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f3.stock);
+                    printf("\nPlease Enter Quantity of %s ",f3.name);
+                    scanf("%d",&q3.quantity);
+                }
+            }
+        else if(id==4)
+            {
+                printf("\nPlease Enter Quantity of %s ",f4.name);
+                scanf("\n%d",&q4.quantity);
+                if((q4.quantity)<=(f4.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f4.stock);
+                    printf("\nPlease Enter Quantity of %s ",f4.name);
+                    scanf("%d",&q4.quantity);
+                }
+            }
+        else if(id==5)
+            {
+                printf("\nPlease Enter Quantity of %s ",f5.name);
+                scanf("%d",&q5.quantity);
+                if((q5.quantity)<=(f5.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f5.stock);
+                    printf("\nPlease Enter Quantity of %s ",f5.name);
+                    scanf("%d",&q5.quantity);
+                }
+            }
+        else if(id==6)
+            {
+                printf("\nPlease Enter Quantity of %s ",f6.name);
+                scanf("%d",&q6.quantity);
+                if((q6.quantity)<=(f6.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f6.stock);
+                    printf("\nPlease Enter Quantity of %s ",f6.name);
+                    scanf("%d",&q6.quantity);
+                }
+            }
+        else if(id==7)
+            {
+                printf("\nPlease Enter Quantity of %s ",f7.name);
+                scanf("%d",&q7.quantity);
+                if((q7.quantity)<=(f7.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f7.stock);
+                    printf("\nPlease Enter Quantity of %s ",f7.name);
+                    scanf("%d",&q7.quantity);
+                }
+            }
+        else if(id==8)
+            {
+                printf("\nPlease Enter Quantity of %s ",f8.name);
+                scanf("%d",&q8.quantity);
+                if((q8.quantity)<=(f8.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f8.stock);
+                    printf("\nPlease Enter Quantity of %s ",f8.name);
+                    scanf("%d",&q8.quantity);
+                }
+            }
+        else if(id==9)
+            {
+                printf("\nPlease Enter Quantity of %s ",f9.name);
+                scanf("%d",&q9.quantity);
+                if((q9.quantity)<=(f9.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f9.stock);
+                    printf("\nPlease Enter Quantity of %s ",f9.name);
+                    scanf("%d",&q9.quantity);
+                }
+            }
+        else if(id==10)
+            {
+                printf("\nPlease Enter Quantity of %s ",f10.name);
+                scanf("%d",&q10.quantity);
+                if((q10.quantity)<=(f10.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f10.stock);
+                    printf("\nPlease Enter Quantity of %s ",f10.name);
+                    scanf("%d",&q10.quantity);
+                }
+            }
+        else if(id==11)
+            {
+                printf("\nPlease Enter Quantity of %s ",f11.name);
+                scanf("%d",&q11.quantity);
+                if((q11.quantity)<=(f11.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f11.stock);
+                    printf("\nPlease Enter Quantity of %s ",f11.name);
+                    scanf("%d",&q11.quantity);
+                }
+            }
+        else if(id==12)
+            {
+                printf("\nPlease Enter Quantity of %s ",f12.name);
+                scanf("%d",&q12.quantity);
+                if((q12.quantity)<=(f12.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+            else{
+                    printf("Please Order Between 1-%d",f12.stock);
+                    printf("\nPlease Enter Quantity of %s ",f12.name);
+                    scanf("%d",&q12.quantity);
+                }
+            }
+        else
+            {
+                printf("\nInvalid Item, Please Select From Menu\n");
+                break;
+
+            }
+    }
+    printf("\n%s Your Bill Is Here\n");
+    printf("                                                                                                                      \n");
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |\t\tName\t\t\t\tQuantity\t\tTotal Price\t|\n");
+    for(i=0;i<item;i++)
+    {
+
+        if(arr[i]==1)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f1.id,f1.name,q1.quantity,q1.quantity*f1.price);
+            f1.stock=(f1.stock-1);
+            total=total+q1.quantity*f1.price;
+        }
+        else if(arr[i]==2)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f2.id,f2.name,q2.quantity,q2.quantity*f2.price);
+            f2.stock=(f2.stock-1);
+            total=total+q2.quantity*f2.price;
+        }
+        else if(arr[i]==3)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f3.id,f3.name,q3.quantity,q3.quantity*f3.price);
+            f3.stock=(f3.stock-1);
+            total=total+q3.quantity*f3.price;
+        }
+        else if(arr[i]==4)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f4.id,f4.name,q4.quantity,q4.quantity*f4.price);
+            f4.stock=(f4.stock-1);
+            total=total+q4.quantity*f4.price;
+        }
+        else if(arr[i]==5)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f5.id,f5.name,q5.quantity,q5.quantity*f5.price);
+            f5.stock=(f5.stock-1);
+            total=total+q5.quantity*f5.price;
+        }
+        else if(arr[i]==6)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f6.id,f6.name,q6.quantity,q6.quantity*f6.price);
+            f6.stock=(f2.stock-1);
+            total=total+q6.quantity*f6.price;
+        }
+        else if(arr[i]==7)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f7.id,f7.name,q7.quantity,q7.quantity*f7.price);
+            f7.stock=(f7.stock-1);
+            total=total+q7.quantity*f7.price;
+        }
+        else if(arr[i]==8)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f8.id,f8.name,q8.quantity,q8.quantity*f8.price);
+            f8.stock=(f8.stock-1);
+            total=total+q8.quantity*f8.price;
+        }
+        else if(arr[i]==9)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t          %d\t\t\t  %d\t\t|\n",f9.id,f9.name,q9.quantity,q9.quantity*f9.price);
+            f9.stock=(f9.stock-1);
+            total=total+q9.quantity*f9.price;
+        }
+        else if(arr[i]==10)
+        {
+            printf("\t\t  |\t%d.%s\t\t          %d\t\t\t  %d\t\t|\n",f10.id,f10.name,q10.quantity,q10.quantity*f10.price);
+            f10.stock=(f10.stock-1);
+            total=total+q10.quantity*f10.price;
+        }
+        else if(arr[i]==11)
+        {
+            printf("\t\t  |\t%d.%s\t\t  %d\t\t\t  %d\t\t|\n",f11.id,f11.name,q11.quantity,q11.quantity*f11.price);
+            f11.stock=(f11.stock-1);
+            total=total+q11.quantity*f11.price;
+        }
+        else if(arr[i]==12)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f12.id,f12.name,q12.quantity,q12.quantity*f12.price);
+            f12.stock=(f12.stock-1);
+            total=total+q12.quantity*f12.price;
+        }
+
+    }
+    printf("\t\t  |\t\t\t\t\t\t\t\t--------------------\t|\n");
+    printf("\t\t  |\t\t\t\t\t\t\t\t   Total  %d     \t|\n",total);
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+    payment();
+}
+void payment()
+{
+    int m;
+    char y1[5];
+    printf("Please Select Your Payment Method\n");
+    printf("Please Enter The Number Of Payment Method\n");
+    printf("1.Bkash\n");
+    printf("2.Nagad\n");
+    printf("3.Rocket\n");
+    printf("4.Cash On delivary\n");
+    scanf("\n%d",&m);
+    if(m==1)
+    {
+        strcpy(m1.method,"Bkash");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n' c\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,"y")==0){
+          strcpy(m1.status,"Paid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else if(m==2)
+    {
+        strcpy(m1.method,"Nagad");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n'To Go Back Again To Select Payment Method\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,'y')==0){
+          strcpy(m1.status,"Paid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else if(m==3)
+    {
+        strcpy(m1.method,"Rocket");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n'To Go Back Again To Select Payment Method\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,'y')==0){
+          strcpy(m1.status,"Paid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else if(m==4)
+    {
+        strcpy(m1.method,"Cash On Delevary");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n'To Go Back Again To Select Payment Method\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,'y')==0){
+          strcpy(m1.status,"Unpaid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else{
+        printf("Invalid Input\nPlease Select Again");
+        payment();
+    }
+}
+
+void printbill()
+{
+    struct food f1={"Mutton Biriyani",1,170,20};
+    struct food f2={"Chicken Biriyani",2,190,24};
+    struct food f3={"Rice 1 Plate",3,15,23};
+    struct food f5={"Chicken curry",5,70,18};
+    struct food f4={"Mutton curry",4,120,19};
+    struct food f6={"Fish curry",6,80,15};
+    struct food f7={"Hot Coffee",7,15,30};
+    struct food f8={"Hot Coffee",8,90,27};
+    struct food f9={"Tea",9,10,100};
+    struct food f10={"Chicken Burger",10,180,30};
+    struct food f11={"Chicken Cheese Burger",11,200,40};
+    struct food f12={"Beef Cheese Burger",12,200,47};
+    int item,i,id,x,total;
+    int arr[item];
+    printf("                                                                                                                      \n");
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |\t\tName\t\t\t\tQuantity\t\tTotal Price\t|\n");
+    for(i=0;i<item;i++)
+    {
+
+        if(arr[i]==1)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f1.id,f1.name,q1.quantity,q1.quantity*f1.price);
+            f1.stock=(f1.stock-1);
+            total=total+q1.quantity*f1.price;
+        }
+        else if(arr[i]==2)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f2.id,f2.name,q2.quantity,q2.quantity*f2.price);
+            f2.stock=(f2.stock-1);
+            total=total+q2.quantity*f2.price;
+        }
+        else if(arr[i]==3)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f3.id,f3.name,q3.quantity,q3.quantity*f3.price);
+            f3.stock=(f3.stock-1);
+            total=total+q3.quantity*f3.price;
+        }
+        else if(arr[i]==4)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f4.id,f4.name,q4.quantity,q4.quantity*f4.price);
+            f4.stock=(f4.stock-1);
+            total=total+q4.quantity*f4.price;
+        }
+        else if(arr[i]==5)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f5.id,f5.name,q5.quantity,q5.quantity*f5.price);
+            f5.stock=(f5.stock-1);
+            total=total+q5.quantity*f5.price;
+        }
+        else if(arr[i]==6)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f6.id,f6.name,q6.quantity,q6.quantity*f6.price);
+            f6.stock=(f2.stock-1);
+            total=total+q6.quantity*f6.price;
+        }
+        else if(arr[i]==7)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f7.id,f7.name,q7.quantity,q7.quantity*f7.price);
+            f7.stock=(f7.stock-1);
+            total=total+q7.quantity*f7.price;
+        }
+        else if(arr[i]==8)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f8.id,f8.name,q8.quantity,q8.quantity*f8.price);
+            f8.stock=(f8.stock-1);
+            total=total+q8.quantity*f8.price;
+        }
+        else if(arr[i]==9)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t          %d\t\t\t  %d\t\t|\n",f9.id,f9.name,q9.quantity,q9.quantity*f9.price);
+            f9.stock=(f9.stock-1);
+            total=total+q9.quantity*f9.price;
+        }
+        else if(arr[i]==10)
+        {
+            printf("\t\t  |\t%d.%s\t\t          %d\t\t\t  %d\t\t|\n",f10.id,f10.name,q10.quantity,q10.quantity*f10.price);
+            f10.stock=(f10.stock-1);
+            total=total+q10.quantity*f10.price;
+        }
+        else if(arr[i]==11)
+        {
+            printf("\t\t  |\t%d.%s\t\t  %d\t\t\t  %d\t\t|\n",f11.id,f11.name,q11.quantity,q11.quantity*f11.price);
+            f11.stock=(f11.stock-1);
+            total=total+q11.quantity*f11.price;
+        }
+        else if(arr[i]==12)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f12.id,f12.name,q12.quantity,q12.quantity*f12.price);
+            f12.stock=(f12.stock-1);
+            total=total+q12.quantity*f12.price;
+        }
+
+    }
+    printf("\t\t  |\t\t\t\t\t\t\t\t--------------------\t|\n");
+    printf("\t\t  |\t\t\t\t\t\t\t\t   Total  %d     \t|\n",total);
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+
+}
+
+#include<stdio.h>
+#include<string.h>
+char user[100],pass[100],username[100],passwor[100];
+char an[100],ap[100];
+
+////structure start
+struct details{
+    char name[100];
+    char num[100];
+    char address[100];
+    char username[100];
+    char password[100];
+    int age;
+    };
+
+struct payment{
+    char method[100],status[100];
+};
+
+struct food{
+    char name[100];
+    int id,price,stock;
+};
+struct fq{
+    int quantity;
+};
+
+struct details u1;
+struct food f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12;
+struct fq q1,q2,q3,q4,q5,q6,q7,q8,q9,q10,q11,q12;
+struct payment m1;
+
+////structure end
+
+
+////main function start
+void main()
+{
+    bk();
+}
+//main function end
+
+
+void bk()
+{
+    char yesno;
+    printf("Welcome to RI Food Corner Menu\n");
+    printf("Do You Have An Account\nIf You Have An Account Then Enter Y/y\n");
+    scanf("\n%c",&yesno);
+    if(yesno=='y' || yesno=='Y')
+    {
+        login();
+    }
+    else
+    {
+        signup();
+    }
+}
+
+////log in function start
+void login()
+{
+    char back;
+    printf("Please Enter Your Details to Continue\n");
+    printf("If you Clicked By Mistaken Then Please Enter Your b/B to Go Back\n");
+    scanf("\n%c",&back);
+    if(back=='b' || back=='B')
+    {
+        bk();
+    }
+    else{
+        usercheck();
+    }
+
+}
+
+void usercheck()
+{
+    struct details u1;
+    printf("Please Enter Your Username\n");
+    scanf("\n%s",username);
+    if(strcmp(username,user)==0 || strcmp(username,"admin")==0)
+    {
+
+        passcheck();
+    }
+    else
+    {
+        struct details u1;
+        printf("Please Check Username And Try Again\n");
+        login();
+    }
+}
+void passcheck()
+{
+    printf("Please Enter Your Password\n");
+    scanf("\n%s",passwor);
+    if(strcmp(passwor,pass)==0 || strcmp(passwor,"admin")==0)
+    {
+
+        printf("\nLog In Successfull");
+        printf("\nWelcome %s To RI Food Corner",u1.username);
+        aui();
+    }
+    else
+    {
+        struct details u1;
+        printf("Please Check Password And Try Again\n");
+        passcheck1();
+    }
+
+}
+void passcheck1()
+{
+    passcheck();
+}
+
+////log in function end
+
+
+
+////sign up function start
+void signup()
+{
+    printf("Please Enter Details To Sign Up\n");
+    printf("Please Enter Name\n");
+    scanf("\n%[^\n]",u1.name);
+    printf("Please Enter Username\n");
+    scanf("\n%s",u1.username);
+    strcpy(user,u1.username);
+    printf("Please Enter Password\n");
+    scanf("\n%s",u1.password);
+    strcpy(pass,u1.password);
+    printf("Please Enter Age\n");
+    scanf("\n%d",&u1.age);
+    numcheck();
+}
+void numcheck()
+{
+    int x;
+    char str1[100];
+    printf("Please Enter 11 Digit Phone Number\n");
+    scanf("%s",u1.num);
+    strcpy(str1,u1.num);
+    x=strlen(str1);
+    if(x==11)
+    {
+        printf("Please Enter Address\n");
+        scanf("\n%[^\n]",u1.address);
+        printf("Sign Up Successfull\nPlease Log In To Continue\n");
+        aui();
+    }
+    else{
+        numcheck1();
+    }
+}
+void numcheck1()
+{
+    numcheck();
+}
+
+////sign up function end
+
+
+////area selection start
+void aui()
+{
+    char areain[100];
+    printf("\nTo Continue Buying Food You Need To Pick Your Area");
+    printf("\nOur Services is Only Available In These Areas");
+    printf("\nArea1\nArea2\nArea3\nArea4\nArea5");
+    printf("\nPlease Enter Your Area\n");
+    scanf("\n%s",areain);
+    if(strcmpi(areain,"area1")==0 || strcmpi(areain,"area2")==0 || strcmpi(areain,"area3")==0 || strcmpi(areain,"area4")==0 || strcmpi(areain,"area5")==0)
+    {
+        printf("\nOur Available Foods Are\n");
+        foodmenu();
+
+    }
+    else
+    {
+        printf("\nOur Service Is Not Available In Your Area");
+        printf("\nWe Will Inform You When Our Service Will Be Available In Your Area");
+        printf("\nPlease Stay Tunned");
+    }
+}
+
+////area selection end
+
+
+
+////food menu start
+void foodmenu()
+{
+    struct food f1={"Mutton Biriyani",1,170,20};
+    struct food f2={"Chicken Biriyani",2,190,24};
+    struct food f3={"Rice 1 Plate",3,15,23};
+    struct food f5={"Chicken curry",5,70,18};
+    struct food f4={"Mutton curry",4,120,19};
+    struct food f6={"Fish curry",6,80,15};
+    struct food f7={"Hot Coffee",7,15,30};
+    struct food f8={"Hot Coffee",8,90,27};
+    struct food f9={"Tea",9,10,100};
+    struct food f10={"Chicken Burger",10,180,30};
+    struct food f11={"Chicken Cheese Burger",11,200,40};
+    struct food f12={"Beef Cheese Burger",12,200,47};
+    printf("\n                                                          -                                                         ");
+    printf("\n                                                         -  -                                                        ");
+    printf("\n                                                        -    -                                                       ");
+    printf("\n                                                       -      -                                                      ");
+    printf("\n                                                      -        -                                                     ");
+    printf("\n                                                     -          -                                                    ");
+    printf("\n-----------------------------------------------------            ----------------------------------------------------");
+    printf("\n----------------------------------------------------------------------------------------------------------------------");
+    printf("\n----------------------------------------------------------------------------------------------------------------------");
+    printf("\n|                                              RI Food Corner Menu                                                   |");
+    printf("\n|                                                                                                                    |");
+    printf("\n|                                                                                                                    |");
+    printf("\n|             Rice Items                             |                            Drinks Items                       |");
+    printf("\n| %d.%s----------------%d TK(Stock %d)  |     %d.%s--------------------- %d TK(Stock %d)         |",f1.id,f1.name,f1.price,f1.stock,f7.id,f7.name,f7.price,f7.stock);
+    printf("\n| %d.%s---------------%d TK(Stock %d)  |      %d.%s--------------------- %d TK(Stock %d)        |",f2.id,f2.name,f2.price,f2.stock,f8.id,f8.name,f8.price,f8.stock);
+    printf("\n| %d.%s------------------- %d TK(Stock %d)  |      %d.%s---------------------------- %d TK(Stock %d)       |",f3.id,f3.name,f3.price,f3.stock,f9.id,f9.name,f9.price,f9.stock);
+    printf("\n|             Curry Item                             |                           Burger Items                        |");
+    printf("\n| %d.%s------------------ %d TK(Stock %d)  |      %d.%s----------------%d TK(Stock %d)        |",f4.id,f4.name,f4.price,f4.stock,f10.id,f10.name,f10.price,f10.stock);
+    printf("\n| %d.%s------------------ %d TK(Stock %d)  |      %d.%s---------%d TK(Stock %d)        |",f5.id,f5.name,f5.price,f5.stock,f11.id,f11.name,f11.price,f11.stock);
+    printf("\n| %d.%s--------------------- %d TK(Stock %d)  |      %d.%s------------%d TK(Stock %d)        |",f6.id,f6.name,f6.price,f6.stock,f12.id,f12.name,f12.price,f12.stock);
+    printf("\n|                                                                                                                    |");
+    printf("\n----------------------------------------------------------------------------------------------------------------------");
+    order();
+}
+////food menu End
+
+
+////purchase item
+order()
+{
+    struct food f1={"Mutton Biriyani",1,170,20};
+    struct food f2={"Chicken Biriyani",2,190,24};
+    struct food f3={"Rice 1 Plate",3,15,23};
+    struct food f5={"Chicken curry",5,70,18};
+    struct food f4={"Mutton curry",4,120,19};
+    struct food f6={"Fish curry",6,80,15};
+    struct food f7={"Hot Coffee",7,15,30};
+    struct food f8={"Hot Coffee",8,90,27};
+    struct food f9={"Tea",9,10,100};
+    struct food f10={"Chicken Burger",10,180,30};
+    struct food f11={"Chicken Cheese Burger",11,200,40};
+    struct food f12={"Beef Cheese Burger",12,200,47};
+    int item,i,id,x,total=0;
+    printf("\nPlease Enter How Many Items You Want To Buy\n");
+    scanf("\n%d",&item);
+    x=item;
+    int arr[item];
+    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+    for(i=0;i<item;i++)
+    {
+        scanf("\n%d",&id);
+        if(id==1)
+        {
+            printf("\nPlease Enter Quantity of %s ",f1.name);
+            scanf("\n%d",&q1.quantity);
+            if((q1.quantity)<=(f1.stock))
+            {
+                arr[i]=id;
+                printf("\nPlease Enter The Number of Food You Want To Buy\n");
+            }
+            else{
+                printf("/nPlease Order Between 1-%d",f1.stock);
+                printf("\nPlease Enter Quantity of %s ",f1.name);
+                scanf("%d",&q1.quantity);
+            }
+        }
+        else if(id==2)
+            {
+                printf("\nPlease Enter Quantity of %s ",f2.name);
+                scanf("\n%d",&q2.quantity);
+                if((q2.quantity)<=(f2.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f2.stock);
+                    printf("\nPlease Enter Quantity of %s ",f2.name);
+                    scanf("%d",&q2.quantity);
+                }
+            }
+        else if(id==3)
+            {
+                printf("\nPlease Enter Quantity of %s ",f3.name);
+                scanf("\n%d",&q3.quantity);
+                if((q2.quantity)<=(f3.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f3.stock);
+                    printf("\nPlease Enter Quantity of %s ",f3.name);
+                    scanf("%d",&q3.quantity);
+                }
+            }
+        else if(id==4)
+            {
+                printf("\nPlease Enter Quantity of %s ",f4.name);
+                scanf("\n%d",&q4.quantity);
+                if((q4.quantity)<=(f4.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f4.stock);
+                    printf("\nPlease Enter Quantity of %s ",f4.name);
+                    scanf("%d",&q4.quantity);
+                }
+            }
+        else if(id==5)
+            {
+                printf("\nPlease Enter Quantity of %s ",f5.name);
+                scanf("%d",&q5.quantity);
+                if((q5.quantity)<=(f5.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f5.stock);
+                    printf("\nPlease Enter Quantity of %s ",f5.name);
+                    scanf("%d",&q5.quantity);
+                }
+            }
+        else if(id==6)
+            {
+                printf("\nPlease Enter Quantity of %s ",f6.name);
+                scanf("%d",&q6.quantity);
+                if((q6.quantity)<=(f6.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f6.stock);
+                    printf("\nPlease Enter Quantity of %s ",f6.name);
+                    scanf("%d",&q6.quantity);
+                }
+            }
+        else if(id==7)
+            {
+                printf("\nPlease Enter Quantity of %s ",f7.name);
+                scanf("%d",&q7.quantity);
+                if((q7.quantity)<=(f7.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f7.stock);
+                    printf("\nPlease Enter Quantity of %s ",f7.name);
+                    scanf("%d",&q7.quantity);
+                }
+            }
+        else if(id==8)
+            {
+                printf("\nPlease Enter Quantity of %s ",f8.name);
+                scanf("%d",&q8.quantity);
+                if((q8.quantity)<=(f8.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f8.stock);
+                    printf("\nPlease Enter Quantity of %s ",f8.name);
+                    scanf("%d",&q8.quantity);
+                }
+            }
+        else if(id==9)
+            {
+                printf("\nPlease Enter Quantity of %s ",f9.name);
+                scanf("%d",&q9.quantity);
+                if((q9.quantity)<=(f9.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f9.stock);
+                    printf("\nPlease Enter Quantity of %s ",f9.name);
+                    scanf("%d",&q9.quantity);
+                }
+            }
+        else if(id==10)
+            {
+                printf("\nPlease Enter Quantity of %s ",f10.name);
+                scanf("%d",&q10.quantity);
+                if((q10.quantity)<=(f10.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f10.stock);
+                    printf("\nPlease Enter Quantity of %s ",f10.name);
+                    scanf("%d",&q10.quantity);
+                }
+            }
+        else if(id==11)
+            {
+                printf("\nPlease Enter Quantity of %s ",f11.name);
+                scanf("%d",&q11.quantity);
+                if((q11.quantity)<=(f11.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+                else{
+                    printf("Please Order Between 1-%d",f11.stock);
+                    printf("\nPlease Enter Quantity of %s ",f11.name);
+                    scanf("%d",&q11.quantity);
+                }
+            }
+        else if(id==12)
+            {
+                printf("\nPlease Enter Quantity of %s ",f12.name);
+                scanf("%d",&q12.quantity);
+                if((q12.quantity)<=(f12.stock))
+                {
+                    arr[i]=id;
+                    printf("\nPlease Enter The Number of Food You Want To Buy\n");
+                }
+            else{
+                    printf("Please Order Between 1-%d",f12.stock);
+                    printf("\nPlease Enter Quantity of %s ",f12.name);
+                    scanf("%d",&q12.quantity);
+                }
+            }
+        else
+            {
+                printf("\nInvalid Item, Please Select From Menu\n");
+                break;
+
+            }
+    }
+    printf("\n%s Your Bill Is Here\n");
+    printf("                                                                                                                      \n");
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |\t\tName\t\t\t\tQuantity\t\tTotal Price\t|\n");
+    for(i=0;i<item;i++)
+    {
+
+        if(arr[i]==1)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f1.id,f1.name,q1.quantity,q1.quantity*f1.price);
+            f1.stock=(f1.stock-1);
+            total=total+q1.quantity*f1.price;
+        }
+        else if(arr[i]==2)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f2.id,f2.name,q2.quantity,q2.quantity*f2.price);
+            f2.stock=(f2.stock-1);
+            total=total+q2.quantity*f2.price;
+        }
+        else if(arr[i]==3)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f3.id,f3.name,q3.quantity,q3.quantity*f3.price);
+            f3.stock=(f3.stock-1);
+            total=total+q3.quantity*f3.price;
+        }
+        else if(arr[i]==4)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f4.id,f4.name,q4.quantity,q4.quantity*f4.price);
+            f4.stock=(f4.stock-1);
+            total=total+q4.quantity*f4.price;
+        }
+        else if(arr[i]==5)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f5.id,f5.name,q5.quantity,q5.quantity*f5.price);
+            f5.stock=(f5.stock-1);
+            total=total+q5.quantity*f5.price;
+        }
+        else if(arr[i]==6)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f6.id,f6.name,q6.quantity,q6.quantity*f6.price);
+            f6.stock=(f2.stock-1);
+            total=total+q6.quantity*f6.price;
+        }
+        else if(arr[i]==7)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f7.id,f7.name,q7.quantity,q7.quantity*f7.price);
+            f7.stock=(f7.stock-1);
+            total=total+q7.quantity*f7.price;
+        }
+        else if(arr[i]==8)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f8.id,f8.name,q8.quantity,q8.quantity*f8.price);
+            f8.stock=(f8.stock-1);
+            total=total+q8.quantity*f8.price;
+        }
+        else if(arr[i]==9)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t          %d\t\t\t  %d\t\t|\n",f9.id,f9.name,q9.quantity,q9.quantity*f9.price);
+            f9.stock=(f9.stock-1);
+            total=total+q9.quantity*f9.price;
+        }
+        else if(arr[i]==10)
+        {
+            printf("\t\t  |\t%d.%s\t\t          %d\t\t\t  %d\t\t|\n",f10.id,f10.name,q10.quantity,q10.quantity*f10.price);
+            f10.stock=(f10.stock-1);
+            total=total+q10.quantity*f10.price;
+        }
+        else if(arr[i]==11)
+        {
+            printf("\t\t  |\t%d.%s\t\t  %d\t\t\t  %d\t\t|\n",f11.id,f11.name,q11.quantity,q11.quantity*f11.price);
+            f11.stock=(f11.stock-1);
+            total=total+q11.quantity*f11.price;
+        }
+        else if(arr[i]==12)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f12.id,f12.name,q12.quantity,q12.quantity*f12.price);
+            f12.stock=(f12.stock-1);
+            total=total+q12.quantity*f12.price;
+        }
+
+    }
+    printf("\t\t  |\t\t\t\t\t\t\t\t--------------------\t|\n");
+    printf("\t\t  |\t\t\t\t\t\t\t\t   Total  %d     \t|\n",total);
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+    payment();
+}
+void payment()
+{
+    int m;
+    char y1[5];
+    printf("Please Select Your Payment Method\n");
+    printf("Please Enter The Number Of Payment Method\n");
+    printf("1.Bkash\n");
+    printf("2.Nagad\n");
+    printf("3.Rocket\n");
+    printf("4.Cash On delivary\n");
+    scanf("\n%d",&m);
+    if(m==1)
+    {
+        strcpy(m1.method,"Bkash");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n' c\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,"y")==0){
+          strcpy(m1.status,"Paid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else if(m==2)
+    {
+        strcpy(m1.method,"Nagad");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n'To Go Back Again To Select Payment Method\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,'y')==0){
+          strcpy(m1.status,"Paid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else if(m==3)
+    {
+        strcpy(m1.method,"Rocket");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n'To Go Back Again To Select Payment Method\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,'y')==0){
+          strcpy(m1.status,"Paid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else if(m==4)
+    {
+        strcpy(m1.method,"Cash On Delevary");
+        printf("Please Make Payment To This Number (01845878722)\n");
+        printf("Have You Made Payment\n");
+        printf("Enter 'Y/y' If You Have Made Payment Otherwise Enter 'N/n'To Go Back Again To Select Payment Method\n");
+        scanf("\n%s",y1);
+        if(strcmpi(y1,'y')==0){
+          strcpy(m1.status,"Unpaid");
+          printbill();
+        }
+        else{
+            payment();
+        }
+
+    }
+    else{
+        printf("Invalid Input\nPlease Select Again");
+        payment();
+    }
+}
+
+void printbill()
+{
+    struct food f1={"Mutton Biriyani",1,170,20};
+    struct food f2={"Chicken Biriyani",2,190,24};
+    struct food f3={"Rice 1 Plate",3,15,23};
+    struct food f5={"Chicken curry",5,70,18};
+    struct food f4={"Mutton curry",4,120,19};
+    struct food f6={"Fish curry",6,80,15};
+    struct food f7={"Hot Coffee",7,15,30};
+    struct food f8={"Hot Coffee",8,90,27};
+    struct food f9={"Tea",9,10,100};
+    struct food f10={"Chicken Burger",10,180,30};
+    struct food f11={"Chicken Cheese Burger",11,200,40};
+    struct food f12={"Beef Cheese Burger",12,200,47};
+    int item,i,id,x,total;
+    int arr[item];
+    printf("                                                                                                                      \n");
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |                                                                        \t        |\n");
+    printf("\t\t  |\t\tName\t\t\t\tQuantity\t\tTotal Price\t|\n");
+    for(i=0;i<item;i++)
+    {
+
+        if(arr[i]==1)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f1.id,f1.name,q1.quantity,q1.quantity*f1.price);
+            f1.stock=(f1.stock-1);
+            total=total+q1.quantity*f1.price;
+        }
+        else if(arr[i]==2)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f2.id,f2.name,q2.quantity,q2.quantity*f2.price);
+            f2.stock=(f2.stock-1);
+            total=total+q2.quantity*f2.price;
+        }
+        else if(arr[i]==3)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f3.id,f3.name,q3.quantity,q3.quantity*f3.price);
+            f3.stock=(f3.stock-1);
+            total=total+q3.quantity*f3.price;
+        }
+        else if(arr[i]==4)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f4.id,f4.name,q4.quantity,q4.quantity*f4.price);
+            f4.stock=(f4.stock-1);
+            total=total+q4.quantity*f4.price;
+        }
+        else if(arr[i]==5)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f5.id,f5.name,q5.quantity,q5.quantity*f5.price);
+            f5.stock=(f5.stock-1);
+            total=total+q5.quantity*f5.price;
+        }
+        else if(arr[i]==6)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f6.id,f6.name,q6.quantity,q6.quantity*f6.price);
+            f6.stock=(f2.stock-1);
+            total=total+q6.quantity*f6.price;
+        }
+        else if(arr[i]==7)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f7.id,f7.name,q7.quantity,q7.quantity*f7.price);
+            f7.stock=(f7.stock-1);
+            total=total+q7.quantity*f7.price;
+        }
+        else if(arr[i]==8)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t  %d\t\t\t  %d\t\t|\n",f8.id,f8.name,q8.quantity,q8.quantity*f8.price);
+            f8.stock=(f8.stock-1);
+            total=total+q8.quantity*f8.price;
+        }
+        else if(arr[i]==9)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t\t          %d\t\t\t  %d\t\t|\n",f9.id,f9.name,q9.quantity,q9.quantity*f9.price);
+            f9.stock=(f9.stock-1);
+            total=total+q9.quantity*f9.price;
+        }
+        else if(arr[i]==10)
+        {
+            printf("\t\t  |\t%d.%s\t\t          %d\t\t\t  %d\t\t|\n",f10.id,f10.name,q10.quantity,q10.quantity*f10.price);
+            f10.stock=(f10.stock-1);
+            total=total+q10.quantity*f10.price;
+        }
+        else if(arr[i]==11)
+        {
+            printf("\t\t  |\t%d.%s\t\t  %d\t\t\t  %d\t\t|\n",f11.id,f11.name,q11.quantity,q11.quantity*f11.price);
+            f11.stock=(f11.stock-1);
+            total=total+q11.quantity*f11.price;
+        }
+        else if(arr[i]==12)
+        {
+            printf("\t\t  |\t%d.%s\t\t\t  %d\t\t\t  %d\t\t|\n",f12.id,f12.name,q12.quantity,q12.quantity*f12.price);
+            f12.stock=(f12.stock-1);
+            total=total+q12.quantity*f12.price;
+        }
+
+    }
+    printf("\t\t  |\t\t\t\t\t\t\t\t--------------------\t|\n");
+    printf("\t\t  |\t\t\t\t\t\t\t\t   Total  %d     \t|\n",total);
+    printf("\t          ---------------------------------------------------------------------------------------\n");
+
+}
+
